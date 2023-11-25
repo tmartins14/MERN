@@ -1,26 +1,26 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <a href="/auth/google">Sign In with Google</a>
-      </header>
-    </div>
-  );
+import Header from "./components/Header";
+import Dashboard from "./components/Dashboard";
+import SurveyNew from "./components/SurveyNew";
+import Landing from "./components/Landing";
+
+// const App = () => {
+class App extends Component {
+  render() {
+    return (
+      <div className="container">
+        <BrowserRouter>
+          <div>
+            <Header />
+            <Route path="/" component={Landing} exact />
+            <Route path="/surveys" component={Dashboard} exact />
+            <Route path="/surveys/new" component={SurveyNew} />
+          </div>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
-
 export default App;
