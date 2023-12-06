@@ -29,8 +29,20 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Routes
 authRoutes(app);
 billingRoutes(app);
+
+if (process.env.NODE_ENV === "production") {
+  // Serve up production assets
+  app.use(express.static("client/build"));
+
+  // Serve up index.html file if route is not recognized
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT);
