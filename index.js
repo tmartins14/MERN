@@ -11,6 +11,8 @@ const bodyParser = require("body-parser");
 
 // Order of these require statements matter - need to define the model before using it
 require("./models/User");
+require("./models/Survey");
+
 require("./services/passport");
 
 mongoose.connect(keys.mongoURI);
